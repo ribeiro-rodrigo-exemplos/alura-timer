@@ -14,5 +14,7 @@ linkFechar.addEventListener('click',() => {
 })
 
 linkTwitter.addEventListener('click',() => {
+    //shell.beep() 
+    //shell.showItemInFolder("/home/rodrigo.santos/Documentos/estudo/alura-timer/main.js")
     shell.openExternal("https://www.twitter.com/dquintanilhas")
 })
