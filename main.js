@@ -20,13 +20,19 @@ ipcMain.on('abrir-janela-sobre', () => {
     if(!sobreWindow){
         sobreWindow = new BrowserWindow({
             width: 300,
-            height: 200
+            height: 220, 
+            alwaysOnTop: true, // no linux nao esta funcionando, so funciona com o metodo setAlwaysOnTop
+            frame: false 
         })
 
         sobreWindow.on('closed',() => {
             sobreWindow = null 
         })
+
+        sobreWindow.setAlwaysOnTop(true); 
     }
 
     sobreWindow.loadURL(`file://${__dirname}/app/sobre.html`)
 })
+
+ipcMain.on('fechar-janela-sobre',() => sobreWindow.close())
