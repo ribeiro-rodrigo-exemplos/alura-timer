@@ -1,5 +1,7 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu} = require('electron');
 const data = require('./data')
+
+let tray = null; 
 
 app.on('ready', () => {
     console.log('Aplicação iniciada');
@@ -7,6 +9,14 @@ app.on('ready', () => {
         width: 600,
         height: 400
     });
+
+    tray = new Tray(__dirname + '/app/img/icon-tray.png')
+    let trayMenu = Menu.buildFromTemplate([
+        {label:'Teste',type:'radio'}, 
+        {label:'OlaMundo',type:'radio'}
+    ]); 
+
+    tray.setContextMenu(trayMenu); 
 
     mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 });
@@ -40,5 +50,5 @@ ipcMain.on('fechar-janela-sobre',() => sobreWindow.close())
 
 ipcMain.on('curso-parado', (event,curso,tempoEstudado) => {
     console.log(`O curso ${curso} foi estudado por ${tempoEstudado}`)
-    data.salvaDados(curso,tempoEstudado)
+    data.salvaDados(curso,tempoEstudado); 
 }); 
