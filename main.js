@@ -9,7 +9,8 @@ app.on('ready', () => {
     console.log('Aplicação iniciada');
     mainWindow = new BrowserWindow({
         width: 600,
-        height: 400
+        height: 400, 
+        icon: __dirname + '/icon/icon.png'
     });
 
     tray = new Tray(__dirname + '/app/img/icon-tray.png')
